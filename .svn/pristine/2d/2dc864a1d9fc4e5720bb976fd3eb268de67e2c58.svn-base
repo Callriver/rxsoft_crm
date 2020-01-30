@@ -1,0 +1,14 @@
+package com.rxsoft.crm.service.impl;
+
+import com.rxsoft.crm.dao.CustomerDao;
+import com.rxsoft.crm.service.CustomerService;
+
+public class CustomerServiceImpl implements CustomerService{
+	//注入持久层对象
+	private CustomerDao customerDao;
+
+	public void setCustomerDao(CustomerDao customerDao) {
+		this.customerDao = customerDao;
+	}
+	
+}

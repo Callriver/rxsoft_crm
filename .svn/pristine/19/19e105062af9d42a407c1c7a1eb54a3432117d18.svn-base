@@ -1,0 +1,4 @@
+jdbc.driverClass=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql:///rxsoft_crm
+jdbc.username=root
+jdbc.password=rxsoftdev

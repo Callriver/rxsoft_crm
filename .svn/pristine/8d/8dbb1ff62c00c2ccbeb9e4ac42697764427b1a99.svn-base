@@ -1,0 +1,5 @@
+package com.rxsoft.crm.dao;
+
+public interface CustomerDao {
+
+}

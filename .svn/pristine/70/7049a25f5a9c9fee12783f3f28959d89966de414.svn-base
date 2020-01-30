@@ -1,0 +1,33 @@
+package com.rxsoft.crm.web.action;
+
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+import com.rxsoft.crm.bean.Customer;
+import com.rxsoft.crm.bean.User;
+import com.rxsoft.crm.service.CustomerService;
+
+public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
+	//模型驱动使用的对象
+	private Customer customer=new Customer();
+
+	@Override
+	public Customer getModel() {
+		return customer;
+	}
+	
+	//注入业务层对象
+	CustomerService customerService;
+
+	public void setCustomerService(CustomerService customerService) {
+		this.customerService = customerService;
+	}
+	
+	/**
+	 * 客户管理:跳转到添加客户页面
+	 */
+	public String saveUI() {
+		return "saveUI";
+	}
+	
+
+}

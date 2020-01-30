@@ -1,0 +1,5 @@
+package com.rxsoft.crm.service;
+
+public interface CustomerService {
+
+}
