@@ -3,6 +3,7 @@ package com.rxsoft.crm.web.action;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.rxsoft.crm.bean.Customer;
@@ -27,8 +28,9 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	}
 	
 	//使用set方法的方式接收数据
-	private Integer currPage;
-	
+	private Integer currPage=1;
+	//每页显示数量
+	private Integer pageSize=3;
 	
 	public void setCurrPage(Integer currPage) {
 		if (currPage==null) {
@@ -36,6 +38,16 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		}
 		this.currPage = currPage;
 	}
+	
+	
+	public void setPageSize(Integer pageSize) {
+		if (pageSize==null) {
+			pageSize = 3;
+		}
+		this.pageSize = pageSize;
+	}
+
+
 	/**
 	 * 客户管理:跳转到添加客户页面
 	 */
@@ -48,7 +60,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	 */
 	public String save() {
 		customerService.save(customer);
-		return NONE;
+		return "findAll";
 	}
 	/**
 	 * 分页查询客户
@@ -58,8 +70,9 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		//接收分页参数
 		//最好使用DetachedCriteria对象(条件查询 带分页)
 		DetachedCriteria criteria=DetachedCriteria.forClass(Customer.class);
-		PageBean<Customer> pageBean = customerService.findByPage(criteria,currPage);
-		return NONE;
+		PageBean<Customer> pageBean = customerService.findByPage(criteria,currPage,pageSize);
+		ActionContext.getContext().getValueStack().push(pageBean);
+		return "findAll";
 	}
 	
 

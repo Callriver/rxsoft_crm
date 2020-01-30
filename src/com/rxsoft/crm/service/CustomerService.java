@@ -9,6 +9,6 @@ public interface CustomerService {
 
 	void save(Customer customer);
 
-	PageBean<Customer> findByPage(DetachedCriteria criteria, Integer currPage);
+	PageBean<Customer> findByPage(DetachedCriteria criteria, Integer currPage, Integer pageSize);
 	
 }
